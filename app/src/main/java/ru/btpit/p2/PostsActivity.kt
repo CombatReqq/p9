@@ -12,6 +12,7 @@ interface OnInteractionListener{
     fun onLike(post: Post){}
     fun onShare(post: Post){}
     fun onEdit(post: Post) {}
+    fun onVideo(post: Post) {}
     fun onRemove(post: Post) {}
 }
 //typealias OnLikeListener = (post: Post) -> Unit
@@ -65,7 +66,9 @@ class PostViewHolder(
 
             }
 
-
+            Video.setOnClickListener {
+                onInteractionListener.onVideo(post)
+            }
 
                     like.setOnClickListener{
                         onInteractionListener.onLike(post) }

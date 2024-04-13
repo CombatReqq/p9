@@ -107,16 +107,14 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun share(id: Long) {
         post = post.map {
-           if (it.id != id) {
-               it
-           }
-            else {
-                it.copy(shareCount = it.shareCount +1)
-           }
-
-
+            if (it.id != id) {
+                it
+            } else {
+                it.copy(shareCount = it.shareCount + 1)
+            }
         }
         data.value = post
+
     }
     override fun removeById(id: Long) {
         post = post.filter { it.id != id }

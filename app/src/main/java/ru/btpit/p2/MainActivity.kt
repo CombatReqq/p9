@@ -1,6 +1,7 @@
 package ru.btpit.p2
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.launch
 import androidx.activity.viewModels
@@ -34,9 +35,16 @@ class MainActivity : AppCompatActivity() {
                 }
                 val shareIntent = Intent.createChooser(intent, getString(R.string.chooser_share_post))
                 startActivity(shareIntent)
+                viewModel.share(post.id)
             }
             override fun onRemove(post: Post) {
                 viewModel.removeById(post.id)
+            }
+            override fun onVideo(post: Post)
+            {
+                val url = "https://www.youtube.com/watch?v=zl49slpr7xA"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
             }
 
         })
